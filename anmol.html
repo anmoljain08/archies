@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You Archie Baby🧿✨💓💍💗🌺🛐🦪♾️💋😭</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #FFD1DC, #D1C4E9);
+    overflow-x: hidden;
+    position: relative;
+    transition: background 0.5s ease-in-out;
+  }
+  body::before, body::after {
+    content: "💖 💖 💖 💖 💖 💖 💖 💖";
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.12;
+    animation: floatHearts 25s linear infinite;
+  }
+  body::before { top: 0; left: 0; }
+  body::after { bottom: 0; right: 0; animation: floatHeartsReverse 30s linear infinite; }
+  @keyframes floatHearts { 0%{ transform: translateY(100vh) translateX(0) rotate(0deg);} 100%{ transform: translateY(-10vh) translateX(50px) rotate(360deg);}}
+  @keyframes floatHeartsReverse { 0%{ transform: translateY(-10vh) translateX(0) rotate(0deg);} 100%{ transform: translateY(100vh) translateX(-50px) rotate(-360deg);}}
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #FF6FA1;
+    text-align: center;
+    margin: 20px 0;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  }
+  .kitty-wrap {
+    position: relative;
+    width: 220px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 20px;
+  }
+  .kitty { width:100%; border-radius:12px; }
+  #message {
+    max-width:90%;
+    padding:15px 20px;
+    background: rgba(255,255,255,0.7);
+    border-radius:20px;
+    font-size:1.2rem;
+    text-align:center;
+    color:#333;
+    margin-bottom:30px;
+    box-shadow: 0 0 15px rgba(255,182,193,0.5);
+  }
+  .section {
+    max-width:90%;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(6px);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:25px;
+    text-align:center;
+    font-size:1.2rem;
+    position: relative;
+    border: 4px solid;
+    border-image: linear-gradient(45deg, #FFD700, #FFB347) 1;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+  .section:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 223, 186, 0.7);
+  }
+  .section::before {
+    content: "";
+    position: absolute;
+    top: -8px; left: -8px; right: -8px; bottom: -8px;
+    border: 2px dashed #FFD700;
+    border-radius: 30px;
+    pointer-events: none;
+  }
+  @keyframes float {0%,100%{ transform:translateY(0);}50%{ transform:translateY(-14px);}}
+  #games-container {
+    max-width:90%;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(6px);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:25px;
+    border: 4px solid;
+    border-image: linear-gradient(45deg, #FFD700, #FFB347) 1;
+    text-align:center;
+  }
+  canvas { display: block; margin: 10px auto; background: rgba(255,255,255,0.8); border-radius:15px; }
+  button { margin:5px; padding:8px 16px; border:none; border-radius:12px; background: #FF6FA1; color:#fff; font-family: 'Pacifico', cursive; cursor:pointer; transition: transform 0.2s; }
+  button:hover { transform: scale(1.1); }
+  #bigHeart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: #FF6FA1;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  }
+  #bigHeart.show {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 1;
+  }
+  .hidden { display: none; }
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 10px;
+    margin-top: 30px;
+  }
+  .gallery-item {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    border: 10px solid #FFC0CB; /* Light pink border */
+    box-sizing: border-box;
+  }
+  .gallery-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+  /* Adding hearts to the frame */
+  .gallery-item::before, .gallery-item::after {
+    content: '💖';
+    position: absolute;
+    font-size: 1.5rem;
+    color: #FF6FA1;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  .gallery-item::before {
+    top: -12px;
+    left: -12px;
+    transform: rotate(-15deg);
+  }
+  .gallery-item::after {
+    bottom: -12px;
+    right: -12px;
+    transform: rotate(15deg);
+    animation-delay: 0.75s;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .gallery-caption {
+    padding: 15px;
+    font-size: 1.1rem;
+    color: #FF6FA1;
+  }
+  .back-button, .khatt-back-button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #FF6FA1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  .back-button:hover, .khatt-back-button:hover {
+    background-color: #FF8BA6;
+  }
+
+  /* New styles for khatt page */
+  .message-section {
+    max-width: 95%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border: 6px solid;
+    border-image: linear-gradient(45deg, #FF69B4, #FFB6C1) 1;
+    white-space: pre-wrap;
+    text-align: left;
+  }
+  .message-section h2 {
+    font-family: 'Pacifico', cursive;
+    color: #FF69B4;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div id="main-page">
+  <div class="kitty-wrap">
+    <img class="kitty" src="https://www.picgifs.com/graphics/h/hello-kitty/graphics-hello-kitty-903247.gif" alt="Hello Kitty" loading="lazy" />
+  </div>
+
+  <h1>For You Archie Baby🧿✨💓💍💗🌺🛐🦪♾️💋😭</h1>
+
+  <div id="message">Loading...</div>
+
+  <div class="section" id="playlist">
+    <h2>Tumhre Liye Mere Gaane💗🌺</h2>
+    <p>Yeh playlist sirf tumhare liye 💖🎶</p>
+  </div>
+
+  <div class="section" id="messages">
+    <h2>Mere Likhe Khatt For U Bacchuu🥺💋</h2>
+    <p>Special messages sirf mere bacchu ke liye 🥰💌</p>
+  </div>
+
+  <div class="section" data-anniversary-id="first">
+    <h2>Pehla Mahina ✨</h2>
+    <p>Our First Month Together 💌</p>
+  </div>
+
+  <div class="section" data-anniversary-id="fourth">
+    <h2>Chautha Mahina 🎉</h2>
+    <p>Happy 4th Month Anniversary 💋</p>
+  </div>
+
+  <div class="section" data-anniversary-id="fifth">
+    <h2>Paanchva Mahina 💖</h2>
+    <p>Our 5th Month Anniversary 🥰</p>
+  </div>
+
+  <div class="section" id="memories">
+    <h2>Humari Yaade💋💋😭</h2>
+    <p>Hamari pyaari yaadein, hamesha mere dil mein 💞📸</p>
+  </div>
+
+  <div id="games-container">
+    <h2>Lo Babyy Khel Lo😈💋</h2>
+    <button onclick="startHeartsGame()">Catch the Hearts</button>
+    <button onclick="startKittyRun()">Kitty Run</button>
+
+    <canvas id="gameCanvas" width="400" height="300"></canvas>
+    <p id="scoreDisplay"></p>
+  </div>
+</div>
+
+<div id="khatt-page" class="hidden">
+  <div class="message-section" id="anniversary-message-container">
+    <h2 id="anniversary-title"></h2>
+    <div id="anniversary-text"></div>
+  </div>
+  <button class="khatt-back-button" onclick="showPage('main')">Back to Home</button>
+</div>
+
+<div id="memories-page" class="hidden">
+  <h1>Our Memories 💋💋😭</h1>
+  <p>Hamari pyaari yaadein, hamesha mere dil mein 💞📸</p>
+  <div class="gallery-container">
+    <div class="gallery-item">
+      <img src="Snapchat-187028927.jpg" alt="A lovely moment together">
+      <div class="gallery-caption">Just the two of us!</div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_20250922_145518_149.jpg" alt="A picture of you as a baby">
+      <div class="gallery-caption">My cute little bacchu!</div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_20250530_211920_430.jpg" alt="Sitting by the water together">
+      <div class="gallery-caption">Remember this day?</div>
+    </div>
+    <div class="gallery-item">
+      <img src="file_000000008a08622fb83f14c7fb976338.png" alt="A beautiful portrait of us">
+      <div class="gallery-caption">Our perfect picture 💓</div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_20250531_103447_211.jpg" alt="Holding hands by the lake">
+      <div class="gallery-caption">Hand in hand, forever.</div>
+    </div>
+    <div class="gallery-item">
+      <img src="IMG_20250917_222345_136.jpg" alt="You with a cute headband">
+      <div class="gallery-caption">My silly, cute Archie!</div>
+    </div>
+  </div>
+  <button class="back-button" onclick="showPage('main')">Back to Home</button>
+</div>
+
+<div id="bigHeart">💖</div>
+
+<script>
+  // Hide all pages initially except for the main one
+  document.getElementById('memories-page').classList.add('hidden');
+  document.getElementById('khatt-page').classList.add('hidden');
+
+  const mainPage = document.getElementById('main-page');
+  const memoriesPage = document.getElementById('memories-page');
+  const khattPage = document.getElementById('khatt-page');
+
+  // Anniversary messages content
+  const anniversaryMessages = {
+    first: {
+      title: "Pehla Mahina ✨",
+      text: `‎Happy first month anniversary my love,
+      ‎The most special person for me, life felt magical since I met u i remember when u said  14:40 4 April 2025 when u said u loved me i remember the message u confessed feelings with it was like
+      ‎"I don't know what I'm crying for
+      ‎I don't think I could love you more
+      ‎It might not be long, but bby I 
+      ‎I'll love u till the day that I die
+      ‎Till the day that I die
+      ‎Till the light leaves my eyes" 
+      ‎I was so happy at that day like सातवे आसमान पर and I'm in love with u so much 
+      ‎I have a request for you my love if I get too emotional to u please don't leave me and judge me weak it's because I feel comfortable with u and I'm so in love with u I don't know if u would like this paragraph by me but one thing I'm sure is I've written this with all my love I can't even express my love in it for u my wifey
+      ‎I remember the face I had when u said u loved me i blushed so hard my face turned red with all my heart I love u babythe only thing I'm sure is you the only thing I want is u showing this message to our beloved daughter 
+      ‎I have a dream I want to win the world for u i want to get a life in mountains with u after ghosting everyone I'll do a small job enjoying our life there with you  and thinking 24*7 bout 
+      ‎I have another request from u that is my love give ur next 720 months to me to us to our love baby I want u forever i don't know we'll be together afterlife but ig possible I'll put my soul on stake of it
+      ‎At last i wanna say that I love you my princess i love I love i love u
+      ‎
+      ‎ शीश महल न मुझको सुहाय, तुझ संग सुखी रोटी भाए
+      ‎
+      ‎With love from ur love🧿🌺💗♾️💓`
+    },
+    fourth: {
+      title: "Chautha Mahina 🎉",
+      text: `Happy fourth month anniversary jaanuuuuuuuu ho gye bhai 4 mahine😋 kitne pyaare 4 mahine the aise hi aapse next 60 years maang rha aapka bacchaaa because he missssssssssss you soooooo much he is just so careless because he knows u care a lot Abt him and u mean life to him he is so obsessed with youuuuuuuuu likeeeeeeeeeeee soooooooooooooo muchhhhhhhhh he just wants to be clingy to you he just wants to cuddle u every single second of his day he sees u like a cute 1 year old babyyyyyyy and sometimes like his mom who is taking care of him constantly he is just mesmerized by ur ethereal beauty ur eternal glow he is just obsessed with you so muchhh aalhchi babyyy aap kitni pyaari ho kitni cutu ho kitni Sundar ho kitni bacche jaisi ho kitni divine ho kitni devi jaisi ho ur his devi ur his baccha ur his cutieeeeeeeeeee patootiiiiiiiii ur so divine ur so ethereal ur so winsome ur so cutu putu my cutieee patootiiiiiiiii bacchaaaaaa aapko Boht pyaallll kalta he ye bacchaaaaaa he is obsessed with you he love u so much meri wifey ji aap Boht matter krti ho iss loser ke liye he wants to make u his baccho ki mumma his mumma ki bahu his sisters ki bhabhi his poto ki dadi his bhanjo ki mami his bhatijo ki chachi he wants to be ur mumma ka damaad papa ka bda beta bhai ka best friend and jiju dosto ka bhi jiju and bada bhai bhatijo ka mausa and fufa ofc😋😋 I just love to spend my time with you bhai i cherish every single mili second with u bhyiiiiii I'm just in love with youuuuuuuuu likeeeeeeeeeeee soooooooooooooo muchhhhhhhhh dharmpatni ji I want to cuddle u rn bhyiiiii give u kisses and hugs endlessly hold ur hand touch ur feet touch ur feet bhyiii it's my fantasy TOUCHING MY LAKSHMI'S FEET 🐾 ur feet look like this btw chotu chotu se kadam aapke bhyiiii hayeeeeeeeeeeeeeeeeeeeeeeeeewwweeeeeeeeeeeeeee I feel like i shall become a writer I'm devoted to u bhyiiiiii ur my religion ur my belief ur my value ur the most beautiful thing happened to me ur the most beautiful woman on this planet. this careless boy cares a lot about u cutu putu I'm in love with youuuuuuuuu this whole paragraph is just nothing in front of my devotion towards u i worship u love ur eyes feel like this song....
+      ‎"TERE NAINA RAAHE SAJADE TERE NAINA DHADKAN KO BADA DE TERE NAINA PALKO MEI SAMA LE TERE NAINA
+      ‎WALLAHH JAKHM PE MARHAM TERE NAINA FULO PE SHABNAM TERE NAINA JAG BHULE BHULE TERE NAINA DIL CHULE CHULE TERE NAINA TERE NAINO KE AAGE TOH TAARE BHI SHARMAYE............ "
+      ‎My cutieeeeeeeeeee patootiiiiiiiii bacchaaaaaa meri wifey ji aise hi sth rehna hum shaadi krenge fir mjaa aayegiii yayyyyyyyyyyyyyyyy cutieeeeeeeeee patootiiiiiiiii mnn krta tumhre gaali ko pkd ke ek dum kheech du itni cutieeeeeeeeeee ho tum ksm se bhyiiiiiii poori meri poekieee mere baccho ki hone waali maaa aapko I loveee youuuuuuuuu आपका भव्य तेज मेरा मन मोह लेता है नाट गोना लाइ 
+      ‎Tum preet ho tum reet ho manmeet ho radha meri manmeet ho 
+      ‎Meri radha rani ho aap meri lakshmi meri saraswati meri shakti. tumhre pairo pr jaan dedu mera bas chale toh itna pyaar krta hu tumse hadd se jyada krta hu bhyiii bhtt bhttt bhttttt jyada krta hu
+      ‎I lobeeeee YOUUUU chooooo muchhhhhhh aalchieeee babyyy. I loveeeeeee youuuuuuuuuuuu sooooooooooooooooooooo muchhhhhhhhhhhhhhhhhhhhhh archieeeee babyyyy😭💋💗🌺💓🧿🛐♾️🦪`
+    },
+    fifth: {
+      title: "Paanchva Mahina 💖",
+      text: `Happy 5th month anniversary meri jaan 5th month of togetherness 5th month of us u r the best person I've ever met the most intelligent and the strongest girl meri radha ur so divine and ethereal the gods true creation I'd say everything in this universe could be occured by itself but u alone r the once created by the god u r just so perfect like msd ka winning 6 tum bhyiii itni pyaari ho na sch mei. Thank youuuu for listening all my bak bak aise hi sunte rehna aapka baccha bht jyada miss krta he aapko din bhr aisa lgta he ki din bhr bs chipka rhe aap se thodu thodu sa loser he bs baaki bht pyaar krta he aap uske liye uska sb kuch ho me toh bhyiiii paragraph Chordo pages likh du aapke liye saare pages Chordo book likh du book bhi Chordo bhhyiiiiii library bhr du aap itni winsome itni khubsurat itni daiviy ho na lgta hi ni he aap asli ho it feels soo illegal ur beauty is the only original thing in this universe the way ur feminine energy is unreal ur so cutieeeeeeeeeee patootiiiiiiiii smaltiepieee mwahhhhhhhh bacchuuuuuuu cutieeeeeeeeeee aapke aage bhyiii sarr kaat kr bhi rkh du bhyiii meri devi ho tumhri pooja krni chiye itni jyada heavenly ho u r a litteral godess jisko jo bolna he bolte rhe me toh tumhri pooja krunga tumhe worship hi krunga I'm so grateful to God ki unhone aapko meri jholi mei daal diya im so excited to live with u forever and start a cutiee si family meri maa puchti he tumhre baare mei unhone beta maan liya he tumhe tum unki chautha baccha bn chuki ho aur teesri ldki unki Bahu ho bs aapke sth jeevan bita dena he aur aapki god mei jaan dedeni he itna hi goal he aapke liye duniya jeetunga babyyyy ur the sweetest cutest and the smartest girl I want u everytime everywhere with me I want u as every relation of mine as my mumma as  my bacchi as my patni as my ashiqui as my devi as my everything aap hi sb kuch ho
+      ‎Tum hi din chde tum hi din dhle tum hi ho bandhu sakha tum hi😭💋💋💋💋
+      ‎Meri radha rani aap ho me toh schhi mei devi maanta hu I love to admire u I love to adore u I love to love you ur my whole heart ur my everything I'm so grateful for this 5th month of togetherness and I want u in every universe aise hi 50 saal aur chiye meko aapke humesha saath rehna he me thodu sa gnda dikhta hu babyyyy manage kr lena hum bht prem krte he aapse aapki pooja krte he aapki aaradhana mei leen rehna chahte he aap ke aage sheesh jhulate he aake pavan prem pr apna sheesh chadhate he aapke pavan charno pr apne honth lgate he aapke charan bhi mere liye swarg he bhyiiiii usme toh sampoorn brahman samaya hoga aap hi lakshmi ho aap pr me puran likh du aap itni sundar dikhti ho ki aap pr apna sb kuch chadha du in this imperfect world ur just so perfect so divine so ethereal my love for u is eternal and would mast till infinity and beyond ur character is soo pure just as himalayan water ur loyalty is as sacred as kailash parvat hume aapke charan chune he bht saara wakt guzaarna he aapke sath aapke saath baate krte krte sona soo kr uth kr aapka chehra dekhna aapke sth sunset dekhna whn aapka maatha chum lena aapki maang mei sindur bharna aapko saree phnana aapki kalai pr chudhiya phnana aapke kaano pr baaliya phnana aapke pairo pr payal phnana aap jaisa koi dusra na hi he na hi hoga mera prem aapke liye anant pr bhi anth ni hota jaanuuuuuuuu 
+      ‎I loveeeee youuuuuuu sooooooo muchhhhhhhhh archieeeee babyyyy 😭💋💋💋💋
+      ‎I missssssssssss youuuuuuuuu bohttt saraaaaaaaa meri jaan 😭💋💋💋
+      ‎Happy 5th month of togetherness love
+      ‎From 
+      ‎Aapka loser chotu sa smaltie cutiepie baccha😭💋
+      ‎😭💋✨🦪💍🛐💓🧿💗🌺♾️`
+    }
+  };
+
+  // Function to toggle between pages
+  function showPage(page) {
+    mainPage.classList.add('hidden');
+    memoriesPage.classList.add('hidden');
+    khattPage.classList.add('hidden');
+    
+    if (page === 'main') {
+      mainPage.classList.remove('hidden');
+    } else if (page === 'memories') {
+      memoriesPage.classList.remove('hidden');
+    } else if (page === 'khatt') {
+      khattPage.classList.remove('hidden');
+    }
+  }
+
+  // Function to display a specific anniversary message
+  function showMessage(anniversaryId) {
+    const messageData = anniversaryMessages[anniversaryId];
+    if (messageData) {
+      document.getElementById('anniversary-title').innerText = messageData.title;
+      document.getElementById('anniversary-text').innerText = messageData.text;
+      showPage('khatt');
+    }
+  }
+
+  // Random messages for the main page
+  const messages = [
+    "Oiii bacchu kya kallhi🥺💋","lo kisshiii🥺💋",
+    "chlo apne nudes bhejo😈","Helloooo babyyy🥺",
+    "Goodmorning princess 🥺💋","Ur bacchu is here😈💋",
+    "u look gorgeous my loveeee😋💋💋","Pyaari bacchiiii",
+    "cutuuuuu meri😋💋","aaja piya tohe pyaar kru😈💋"
+  ];
+  document.getElementById("message").innerText = messages[Math.floor(Math.random() * messages.length)];
+
+  // Big heart click transition
+  const bigHeart = document.getElementById('bigHeart');
+  document.querySelectorAll('.section').forEach(section => {
+    section.addEventListener('click', (e) => {
+      bigHeart.classList.add('show');
+      const anniversaryId = section.getAttribute('data-anniversary-id');
+      
+      setTimeout(() => {
+        bigHeart.classList.remove('show');
+        if (section.id === 'memories') {
+          showPage('memories');
+        } else if (anniversaryId) {
+          showMessage(anniversaryId);
+        }
+      }, 600);
+    });
+  });
+
+  // Game setup
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  let hearts = [], kitty = {x:50,y:220,width:40,height:40,vy:0,jumping:false};
+  let obstacles = [], score=0, gameMode="";
+  let animationId;
+
+  function startHeartsGame() {
+    gameMode="hearts"; hearts=[]; score=0; document.getElementById('scoreDisplay').innerText="Score: "+score;
+    obstacles=[]; cancelAnimationFrame(animationId);
+    for(let i=0;i<5;i++) spawnHeart();
+    gameLoop();
+  }
+  function spawnHeart(){
+    hearts.push({x:Math.random()*380, y:0, size:20+Math.random()*10, speed:1+Math.random()*2});
+  }
+  function startKittyRun(){
+    gameMode="kitty"; kitty.y=220; kitty.vy=0; kitty.jumping=false;
+    obstacles=[{x:400, y:220, width:20, height:40}]; score=0;
+    hearts=[]; document.getElementById('scoreDisplay').innerText="Score: "+score;
+    cancelAnimationFrame(animationId);
+    gameLoop();
+  }
+  function kittyJump(){ if(!kitty.jumping){ kitty.vy=-8; kitty.jumping=true; } }
+  document.addEventListener('keydown', e=>{
+    if(e.key===" " && gameMode==="kitty") kittyJump();
+  });
+  canvas.addEventListener('click', function(e){
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    if(gameMode==="hearts"){
+      for(let i=hearts.length-1;i>=0;i--){
+        let h=hearts[i];
+        if(mx>h.x && mx<h.x+h.size && my>h.y && my<h.y+h.size){
+          hearts.splice(i,1); score++;
+          document.getElementById('scoreDisplay').innerText="Score: "+score;
+          spawnHeart();
+        }
+      }
+    } else if(gameMode==="kitty"){
+      kittyJump();
+    }
+  });
+  function gameLoop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(gameMode==="hearts"){
+      hearts.forEach(h=>{
+        h.y+=h.speed; ctx.fillStyle="red"; ctx.beginPath();
+        ctx.moveTo(h.x + h.size/2, h.y + h.size/5);
+        ctx.bezierCurveTo(h.x + h.size/2, h.y, h.x, h.y, h.x, h.y + h.size/5);
+        ctx.bezierCurveTo(h.x, h.y + h.size/2, h.x + h.size/2, h.y + 3*h.size/4, h.x + h.size/2, h.y + h.size);
+        ctx.bezierCurveTo(h.x + h.size/2, h.y + 3*h.size/4, h.x + h.size, h.y + h.size/2, h.x + h.size, h.y + h.size/5);
+        ctx.bezierCurveTo(h.x + h.size, h.y, h.x + h.size/2, h.y, h.x + h.size/2, h.y + h.size/5);
+        ctx.fill();
+        if(h.y>canvas.height) h.y=0;
+      });
+    } else if(gameMode==="kitty"){
+      kitty.vy+=0.5; kitty.y+=kitty.vy;
+      if(kitty.y>220){ kitty.y=220; kitty.vy=0; kitty.jumping=false; }
+      ctx.fillStyle="pink"; ctx.fillRect(kitty.x, kitty.y, kitty.width, kitty.height);
+      obstacles.forEach(o=>{
+        o.x-=3; ctx.fillStyle="red"; ctx.fillRect(o.x,o.y,o.width,o.height);
+        if(o.x+o.width<0){ o.x=400; score++; document.getElementById('scoreDisplay').innerText="Score: "+score; }
+      });
+    }
+    animationId=requestAnimationFrame(gameLoop);
+  }
+</script>
+
+</body>
+</html>
